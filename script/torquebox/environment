@@ -1,0 +1,10 @@
+#!/bin/bash
+if which rvm | grep -q rvm; then
+  echo "Disarming rvm, so we can use ${JRUBY_HOME}"
+  rvm use system
+fi
+
+export TORQUEBOX_HOME=$HOME/torquebox-current
+export JBOSS_HOME=$TORQUEBOX_HOME/jboss
+export JRUBY_HOME=$TORQUEBOX_HOME/jruby
+export PATH=$JRUBY_HOME/bin:$PATH

@@ -1,0 +1,26 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rack (1.2.2)
+    torquebox (1.0.0)
+      torquebox-base (= 1.0.0)
+      torquebox-messaging (= 1.0.0)
+      torquebox-naming (= 1.0.0)
+      torquebox-rake-support (= 1.0.0)
+      torquebox-vfs (= 1.0.0)
+      torquebox-web (= 1.0.0)
+    torquebox-base (1.0.0-java)
+    torquebox-messaging (1.0.0-java)
+      torquebox-base (= 1.0.0)
+      torquebox-naming (= 1.0.0)
+    torquebox-naming (1.0.0-java)
+    torquebox-rake-support (1.0.0)
+    torquebox-vfs (1.0.0-java)
+    torquebox-web (1.0.0-java)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  rack
+  torquebox

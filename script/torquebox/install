@@ -1,0 +1,38 @@
+#!/bin/bash
+set -e
+pushd `dirname $0`
+source environment
+popd
+
+if [ ! -d ${TORQUEBOX_HOME} ] ; then
+  echo -n 'Installing torquebox ... '
+  pushd ${HOME}
+  [ -f torquebox-dist-1.0.0-bin.zip ] || curl -O http://repository-torquebox.forge.cloudbees.com/release/org/torquebox/torquebox-dist/1.0.0/torquebox-dist-1.0.0-bin.zip
+  [ -d torquebox-dist-1.0.0 ]         || unzip -q -o torquebox-dist-1.0.0-bin.zip
+  ln -s torquebox-1.0.0 ${TORQUEBOX_HOME}
+  echo 'OK'
+  popd
+fi
+
+if ! gem list | grep -q bundler; then
+  echo 'Installing bundler'
+  gem install bundler --version='=1.0.13' --no-ri --no-rdoc
+
+  echo 'Running bundle for the first time ...' 
+  bundle
+fi
+
+echo "TORQUEBOX_HOME: ${TORQUEBOX_HOME}"
+echo "JBOSS_HOME: ${JBOSS_HOME}"
+echo "JRUBY_HOME: ${JRUBY_HOME}"
+
+echo
+echo '==============================================='
+echo 'torquebox is ready!'
+echo '==============================================='
+echo
+echo 'For maximum happiness:'
+echo ' - Always source script/torquebox/environment'
+echo ' - Manage torquebox with these rake tasks:'
+rake -sT torquebox
+
